@@ -1778,9 +1778,18 @@
   dispatch:
     CompositeImplicitAutograd: conv_transpose2d_symint
 
-- func: conv_transpose3d.input(Tensor input, Tensor weight, Tensor? bias=None, SymInt[3] stride=1, SymInt[3] padding=0, SymInt[3] output_padding=0, SymInt groups=1, SymInt[3] dilation=1) -> Tensor
+- func: conv_transpose3d(Tensor input, Tensor weight, Tensor? bias=None, SymInt[3] stride=1, SymInt[3] padding=0, SymInt[3] output_padding=0, SymInt groups=1, SymInt[3] dilation=1) -> Tensor
+  variants: function
   dispatch:
+    # MPS: conv_transpose3d_mps
     CompositeImplicitAutograd: conv_transpose3d_symint
+    # derivatives: conv_transpose3d_backward
+  tags: core
+
+- func: conv_transpose3d_backward(Tensor grad_output, Tensor input, Tensor weight, SymInt[]? bias_sizes, SymInt[3] stride, SymInt[3] padding, SymInt[3] output_padding, SymInt groups, SymInt[3] dilation, bool[3] output_mask) -> (Tensor, Tensor, Tensor)
+  dispatch:
+    CompositeExplicitAutograd: conv_transpose3d_backward
+  tags: [core]
 
 - func: copy(Tensor self, Tensor src, bool non_blocking=False) -> Tensor
   variants: function
