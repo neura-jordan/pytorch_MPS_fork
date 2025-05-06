@@ -825,7 +825,7 @@ copy pasted in from VariableTypeEverything.cpp with appropriate substitutions.
   _(conv_tbc)                            \
   _(conv_transpose1d)                    \
   _(conv_transpose2d, input)             \
-  _(conv_transpose3d, input)             \
+  _(conv_transpose3d)             \
   _(convolution)                         \
   _(prelu)                               \
   _(addmm)                               \
@@ -955,7 +955,7 @@ copy pasted in from VariableTypeEverything.cpp with appropriate substitutions.
         DimnameList,                                                        \
         bool,                                                               \
         ScalarType),                                                        \
-    fp32_append_dtype)
+    fp32_append_dtype)                                                      \
 
 #define AT_FORALL_PROMOTE(_) \
   _(addcdiv)                 \
