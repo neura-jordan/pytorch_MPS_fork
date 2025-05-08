@@ -418,7 +418,7 @@ static Tensor conv_transpose3d_weight_mps(const Tensor& grad_output,
 static Tensor conv_transpose3d_input_mps(const Tensor& grad_output,
                                          const Tensor& weight,
                                          const Tensor& input,
-                                         const c10::optional<Tensor>& bias,
+                                         const std::optional<Tensor>& bias,
                                          IntArrayRef stride,
                                          IntArrayRef padding,
                                          IntArrayRef output_padding,
@@ -562,7 +562,7 @@ std::tuple<at::Tensor, at::Tensor, at::Tensor> conv_transpose3d_backward_mps_imp
     if (output_mask[0]) {
         // Calculate grad_input
         grad_input = conv_transpose3d_input_mps(
-            grad_output, weight, input, /*bias=*/c10::nullopt,
+            grad_output, weight, input, /*bias=*/std::nullopt,
             stride, padding, output_padding, groups, dilation);
     }
 
